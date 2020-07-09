@@ -1,0 +1,32 @@
+<div class="data-table mat-elevation-z8">
+
+    <mat-table [dataSource]="dataSource" matSort>
+        
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.name || 'N/A'}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.price || 'NO STOCK'}}$</mat-cell>
+          </ng-container>
+        
+        <ng-container matColumnDef="quantity">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </mat-header-cell>
+          <mat-cell *matCellDef="let row, let i = index">
+            <input matInput type="number" placeholder="Quantity" name="quantity" [(ngModel)]="quantity[i]" min="0"  max="{{row.quantity}}" onKeyDown="return false"/>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="total">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Total </mat-header-cell>
+            <mat-cell *matCellDef="let row, let i = index">{{row.price*quantity[i] | number}}$</mat-cell>
+          </ng-container>
+        
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+    </mat-table>
+    <button mat-raised-button color="accent" matTooltip="CreateNew " class="create-buttons mr-10 mb-6" (click)="sellItems()">SELL ALL</button>
+</div>

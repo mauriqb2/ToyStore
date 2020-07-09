@@ -1,0 +1,5 @@
+C:\Users\Mauricio\Desktop\Projects\ToysStoreAPI\ToysStoreAPI\obj\Debug\netcoreapp2.2\ToysStoreAPI.csprojAssemblyReference.cache
+C:\Users\Mauricio\Desktop\Projects\ToysStoreAPI\ToysStoreAPI\obj\Debug\netcoreapp2.2\ToysStoreAPI.RazorAssemblyInfo.cache
+C:\Users\Mauricio\Desktop\Projects\ToysStoreAPI\ToysStoreAPI\obj\Debug\netcoreapp2.2\ToysStoreAPI.RazorAssemblyInfo.cs
+C:\Users\Mauricio\Desktop\Projects\ToysStoreAPI\ToysStoreAPI\obj\Debug\netcoreapp2.2\ToysStoreAPI.AssemblyInfoInputs.cache
+C:\Users\Mauricio\Desktop\Projects\ToysStoreAPI\ToysStoreAPI\obj\Debug\netcoreapp2.2\ToysStoreAPI.AssemblyInfo.cs

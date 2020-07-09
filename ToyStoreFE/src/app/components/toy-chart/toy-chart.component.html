@@ -1,0 +1,151 @@
+
+<ng-container *ngIf="!showOptions">
+  <div class="card-container" > 
+    <mat-card class="card" (click)="filterByEnterprise(0)">
+      <mat-card-title>
+        ALL
+      </mat-card-title>
+      <mat-card-subtitle>
+        No country
+      </mat-card-subtitle>
+      <mat-card-content>
+        <p>Show all enterprises</p>
+      </mat-card-content>
+    </mat-card> 
+    <mat-card class="card" *ngFor="let enterprise of enterprises" (click)="filterByEnterprise(enterprise.id)">
+      <mat-card-title>
+        {{enterprise.name}}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{enterprise.country}}
+      </mat-card-subtitle>
+      <mat-card-content>
+        <p>{{enterprise.description}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-container>
+<ng-container *ngIf="showOptions">
+  <div class="option-buttons">
+    <button mat-raised-button color="warn" matTooltip="CreateNew " class="create-buttons mr-10 mb-6" (click)="goBack()">RETURN</button>
+    <button mat-raised-button color="warn" matTooltip="CreateNew " class="create-buttons mr-10 mb-6" (click)="deleteCategory()" *ngIf="selected!=0">DELETE ENTERPRISE</button>
+  </div>
+  <div class="data-table mat-elevation-z8">
+    <mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id || 'N/A'}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="createdDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <ng-container *ngIf="editdisabled || row.id!==editID">
+              {{row.createdDate | date:"MM/dd/yyyy"}}
+          </ng-container>
+          <ng-container *ngIf="!editdisabled && row.id===editID">
+            <mat-form-field class="my-form-field" appearance="outline">
+              <input matInput type="datetime-local" placeholder="Created date" [disabled]="editdisabled" name="createdDate" [(ngModel)]="row.createdDate">
+            </mat-form-field>
+          </ng-container>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <ng-container *ngIf="editdisabled || row.id!==editID">
+              {{row.name || 'N/A'}}
+          </ng-container>
+          <ng-container *ngIf="!editdisabled && row.id===editID">
+            <mat-form-field class="my-form-field" appearance="outline">
+              <input matInput placeholder="Name" [disabled]="editdisabled" name="name" [(ngModel)]="row.name">
+            </mat-form-field>
+          </ng-container>   
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="category">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Category </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <ng-container *ngIf="editdisabled || row.id!==editID">
+              {{row.category || 'N/A'}}
+          </ng-container>
+          <ng-container *ngIf="!editdisabled && row.id===editID">
+            <mat-form-field class="my-form-field" appearance="outline">
+              <input matInput placeholder="Category" [disabled]="editdisabled" name="category" [(ngModel)]="row.category">
+            </mat-form-field>
+          </ng-container> 
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="enterprise">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Enterprise </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <ng-container *ngIf="editdisabled || row.id!==editID">
+            <div class="badge" *ngFor="let enterprise of enterprises" [hidden]="enterprise.id!=row.enterpriseID">
+              {{ enterprise.name }}
+            </div>
+          </ng-container>
+          <ng-container *ngIf="!editdisabled && row.id===editID">
+            <mat-form-field class="my-form-field" appearance="outline">
+              <mat-select [(value)]="row.enterpriseID" [(ngModel)]="row.enterpriseID">
+                <mat-option *ngFor="let enterprise of enterprises" [value]="enterprise.id">
+                  {{enterprise.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </ng-container> 
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="quantity">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <ng-container *ngIf="editdisabled || row.id!==editID">
+              {{row.quantity || 'N/A'}}
+          </ng-container>
+          <ng-container *ngIf="!editdisabled && row.id===editID">
+            <mat-form-field class="my-form-field" appearance="outline">
+              <input matInput type="number" placeholder="Quantity" [disabled]="editdisabled" name="quantity" [(ngModel)]="row.quantity">
+            </mat-form-field>
+          </ng-container> 
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <ng-container *ngIf="editdisabled || row.id!==editID">
+              {{row.price || 'N/A'}}$
+          </ng-container>
+          <ng-container *ngIf="!editdisabled && row.id===editID">
+            <mat-form-field class="my-form-field" appearance="outline">
+              <input matInput type="number" placeholder="Price" [disabled]="editdisabled" name="createdDate" [(ngModel)]="row.price">
+            </mat-form-field>
+          </ng-container>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <span>
+              <ng-container *ngIf="editdisabled">
+                <mat-icon class="edit-buttons" matTooltip="edit" (click)="editROw(row.id)">edit</mat-icon>
+                <mat-icon class="edit-buttons" matTooltip="delete" color="warn" (click)="deleteToy(row)">delete</mat-icon>
+              </ng-container>
+              <ng-container *ngIf="!editdisabled && row.id===editID">
+                <ng-container *ngIf="newEnabled">
+                  <button mat-raised-button color="accent" matTooltip="Create" class="edit-buttons mr-10 mb-6" [disabled]="editdisabled" (click)="createToy(row)">Create</button>
+                </ng-container>
+                <ng-container *ngIf="!newEnabled">
+                  <button mat-raised-button color="accent" matTooltip="Update" class="edit-buttons mr-10 mb-6" [disabled]="editdisabled" (click)="updateToy(row)">Update</button>
+                </ng-container>
+                <button mat-raised-button color="warn" matTooltip="Cancel" class="edit-buttons" [disabled]="editdisabled" (click)="cancelEdit(row)">Cancel</button>
+              </ng-container>
+            </span>
+        </mat-cell>
+        </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[8, 16, 32, 64]">
+    </mat-paginator>
+    <button mat-raised-button color="accent" matTooltip="CreateNew " class="create-buttons mr-10 mb-6" (click)="addToy()">ADD NEW TOY</button>
+  </div>
+</ng-container>

@@ -1,0 +1,16 @@
+<div>
+    <h1>Create Enterprise</h1>
+    <mat-form-field class="my-form-field" appearance="outline">
+        <mat-label>Enterprise name</mat-label>
+        <input matInput type="text" placeholder="Name" name="name" [(ngModel)]="enterprise.name">
+    </mat-form-field>
+    <mat-form-field class="my-form-field" appearance="outline">
+        <mat-label>Country</mat-label>
+        <input matInput type="text" placeholder="Country" name="country" [(ngModel)]="enterprise.country">
+    </mat-form-field>
+    <mat-form-field class="my-form-field" appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Description" [(ngModel)]="enterprise.description"></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="accent" matTooltip="CreateNew " class="create-buttons mr-10 mb-6" (click)="addEnterprise(enterprise)">SAVE</button>
+</div>

@@ -1,0 +1,65 @@
+.data-table {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter{
+  margin: 20px;
+  padding: 20px;
+}
+
+.action-buttons{
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stock-button {
+  margin: 20px!important;
+  cursor: pointer;
+}
+
+.edit-buttons {
+  margin: 5px!important;
+  cursor: pointer;
+}
+
+.create-buttons {
+  margin: 5px!important;
+  cursor: pointer;
+  
+  flex-flow: flex-end;
+}
+
+.option-buttons{
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.my-form-field .mat-form-field-wrapper{
+  margin-bottom: -1em!important;
+}
+
+mat-form-field {
+  width: 100%!important;
+}
+
+.card-container{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  justify-content: center;
+}
+
+.card{
+  margin: 10px;
+  width: 300px;
+  height: 200px;
+}
+
+.card:hover{
+  cursor: pointer;
+  background-color: rgba(58, 58, 58, 0.151);
+}
