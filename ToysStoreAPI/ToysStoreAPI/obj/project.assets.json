@@ -2531,11 +2531,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mauricio\\Desktop\\Projects\\ToysStoreAPI\\ToysStoreAPI\\ToysStoreAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Mauricio\\Desktop\\ToyStore\\ToysStoreAPI\\ToysStoreAPI\\ToysStoreAPI.csproj",
       "projectName": "ToysStoreAPI",
-      "projectPath": "C:\\Users\\Mauricio\\Desktop\\Projects\\ToysStoreAPI\\ToysStoreAPI\\ToysStoreAPI.csproj",
+      "projectPath": "C:\\Users\\Mauricio\\Desktop\\ToyStore\\ToysStoreAPI\\ToysStoreAPI\\ToysStoreAPI.csproj",
       "packagesPath": "C:\\Users\\Mauricio\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mauricio\\Desktop\\Projects\\ToysStoreAPI\\ToysStoreAPI\\obj\\",
+      "outputPath": "C:\\Users\\Mauricio\\Desktop\\ToyStore\\ToysStoreAPI\\ToysStoreAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
